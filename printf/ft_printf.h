@@ -6,12 +6,19 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:10:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/07/24 14:10:26 by MP9              ###   ########.fr       */
+/*   Updated: 2025/07/24 16:15:42 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# define NULL_STRING "(ads)"
+# define NULL_STRING_LEN 5
+# ifdef LINUX
+#  define NULL_STRING "(null)"
+#  define NULL_STRING_LEN 5
+# endif
 
 # include <stdarg.h>
 # include <unistd.h>

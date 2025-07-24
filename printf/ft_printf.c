@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:10:31 by MP9               #+#    #+#             */
-/*   Updated: 2025/07/24 15:14:21 by MP9              ###   ########.fr       */
+/*   Updated: 2025/07/24 18:04:38 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 static int	convert_pointer(void *ptr)
 {
-	unsigned long	addr;
-	int				count;
-	int				prot;
+	int	out;
+	int	bytes_written;
 
-	prot = write(1, "0x0", 3);
-	if (prot == -1 || !ptr)
-		return (prot);
-	addr = (unsigned long)ptr;
-	count = 0;
-	count += ft_putstr("0x");
-	count += ft_putnbr_hex(addr, 0);
-	return (count);
+	out = ft_putstr("0x");
+	if (!ptr)
+	{
+		bytes_written = write(1, "0", 1);
+		if (bytes_written == -1)
+			return (-1);
+		return (out + bytes_written);
+	}
+	bytes_written = ft_putnbr_hex((unsigned long)ptr, 0);
+	if (bytes_written == -1)
+		return (-1);
+	return (out + bytes_written);
 }
 
 static int	format_specifier(const char *f, int i, va_list args)
@@ -68,12 +71,12 @@ int	ft_printf(const char *f, ...)
 			prot = format_specifier(f, 0, args);
 		}
 		else
-			prot = write(1, f, 1);
-		if (prot == -1)
-			return (-1);
+		{
+			if (write(1, f, 1) == -1)
+				return (va_end(args), -1);
+		}
 		count += prot;
 		f++;
 	}
-	va_end(args);
-	return (count);
+	return (va_end(args), count);
 }

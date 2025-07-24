@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:10:38 by MP9               #+#    #+#             */
-/*   Updated: 2025/07/24 14:10:41 by MP9              ###   ########.fr       */
+/*   Updated: 2025/07/24 17:53:40 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	digit_to_hex(int digit, int uppercase)
 {
 	if (digit < 10)
 		return ('0' + digit);
-	else if (uppercase)
+	else if (uppercase == 1)
 		return ('A' + digit - 10);
 	else
 		return ('a' + digit - 10);
@@ -74,14 +74,12 @@ int	ft_putnbr_hex(unsigned long n, int uppercase)
 {
 	int		count;
 	char	hex_char;
-	int		prot;
 
 	count = 0;
 	if (n >= 16)
 		count += ft_putnbr_hex(n / 16, uppercase);
 	hex_char = digit_to_hex(n % 16, uppercase);
-	prot = write(1, &hex_char, 1);
-	if (prot == -1)
+	if (write(1, &hex_char, 1) == -1)
 		return (-1);
 	return (count + 1);
 }
