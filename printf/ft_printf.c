@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 14:10:31 by MP9               #+#    #+#             */
-/*   Updated: 2025/07/24 18:04:38 by MP9              ###   ########.fr       */
+/*   Created: 2025/07/26 13:39:55 by MP9               #+#    #+#             */
+/*   Updated: 2025/07/29 16:04:07 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 static int	convert_pointer(void *ptr)
 {
-	int	out;
-	int	bytes_written;
+	unsigned long	addr;
+	int				count;
 
-	out = ft_putstr("0x");
+	addr = (unsigned long)ptr;
+	count = 0;
 	if (!ptr)
 	{
-		bytes_written = write(1, "0", 1);
-		if (bytes_written == -1)
+		if (write(1, NULL_STRING, NULL_STRING_LENGTH) == -1)
 			return (-1);
-		return (out + bytes_written);
+		return (NULL_STRING_LENGTH);
 	}
-	bytes_written = ft_putnbr_hex((unsigned long)ptr, 0);
-	if (bytes_written == -1)
+	count += ft_putstr("0x");
+	if (count == -1)
 		return (-1);
-	return (out + bytes_written);
+	count += ft_putnbr_hex(addr, 0);
+	return (count);
 }
 
 static int	format_specifier(const char *f, int i, va_list args)
@@ -52,7 +53,7 @@ static int	format_specifier(const char *f, int i, va_list args)
 		return (convert_pointer(va_arg(args, void *)));
 	if (c == '%')
 		return (ft_putchar('%'));
-	return (-1);
+	return (0);
 }
 
 int	ft_printf(const char *f, ...)
@@ -69,14 +70,16 @@ int	ft_printf(const char *f, ...)
 		{
 			f++;
 			prot = format_specifier(f, 0, args);
+			if (prot == -1)
+				return (-1);
 		}
+		else if (write(1, f, 1) == -1)
+			return (-1);
 		else
-		{
-			if (write(1, f, 1) == -1)
-				return (va_end(args), -1);
-		}
+			prot = 1;
 		count += prot;
 		f++;
 	}
-	return (va_end(args), count);
+	va_end(args);
+	return (count);
 }

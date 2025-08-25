@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 14:09:56 by MP9               #+#    #+#             */
-/*   Updated: 2025/07/24 16:24:39 by MP9              ###   ########.fr       */
+/*   Created: 2025/07/26 13:40:29 by MP9               #+#    #+#             */
+/*   Updated: 2025/08/07 14:11:20 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	ft_putstr(char *str)
 {
-	int		count;
-	int		prot;
+	int	count;
 
 	count = 0;
 	if (!str)
 	{
-		prot = write(1, NULL_STRING, 6);
-		if (prot == -1)
+		if (write(1, "(null)", 6) == -1)
 			return (-1);
 		return (6);
 	}

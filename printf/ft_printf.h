@@ -5,24 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 14:10:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/07/24 16:15:42 by MP9              ###   ########.fr       */
+/*   Created: 2025/07/26 13:40:04 by MP9               #+#    #+#             */
+/*   Updated: 2025/08/07 14:18:33 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define NULL_STRING "(ads)"
-# define NULL_STRING_LEN 5
-# ifdef LINUX
-#  define NULL_STRING "(null)"
-#  define NULL_STRING_LEN 5
+# if defined(__linux__)
+#  define NULL_STRING "(nil)"
+#  define NULL_STRING_LENGTH 5
+# elif defined(__APPLE__)
+#  define NULL_STRING "0x0"
+#  define NULL_STRING_LENGTH 3
+# else
+#  error "Unsupported platform"
 # endif
 
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <limits.h>
 
 int		ft_printf(const char *f, ...);
 int		ft_putchar(int c);

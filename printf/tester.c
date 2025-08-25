@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 14:09:45 by MP9               #+#    #+#             */
-/*   Updated: 2025/07/24 17:46:00 by MP9              ###   ########.fr       */
+/*   Created: 2025/07/26 13:40:39 by MP9               #+#    #+#             */
+/*   Updated: 2025/08/25 22:14:08 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,12 @@
 // 	printf("Return values: ft_printf = %d, printf = %d\n\n", ret1, ret2);
 
 // 	// %p
-// 	ret1 = ft_printf("ft_printf: p: %p", ptr);
-// 	ret2 = printf("printf   : p: %p", ptr);
+// 	ret1 = ft_printf("ft_printf: p: %p\n", ptr);
+// 	ret2 = printf("printf   : p: %p\n", ptr);
 // 	printf("Return values: ft_printf = %d, printf = %d\n\n", ret1, ret2);
 
 // 	// %p with NULL
-// 	ret1 = ft_printf("ft_printf: null pointer: %p\n", "");
-// 	ret2 = printf("printf   : null pointer: %p\n", "");
-// 	printf("Return values: ft_printf = %d, printf = %d\n\n", ret1, ret2);
-
-// 	ret1 = ft_printf("ft_printf: random bshit:%pGiw;\r%swA|Q/N,X%cy9v%s'il%uHz'W&:GUU%p\tP D\f3H%d;\f\n", (void *)-11643967646766922, ".x%L]\"bLnJ\n)@Rt6rxHFU\n9LH", 588398736, "Cl;Ytk:[d13VZ8jYY`.$1$x8P", -1608373338, (void *)-233921788554454061, -1472867249);
-// 	ret2 = printf("printf   : random bshit: %pGiw;\r%swA|Q/N,X%cy9v%s'il%uHz'W&:GUU%p\tP D\f3H%d;\f\n", (void *)-11643967646766922, ".x%L]\"bLnJ\n)@Rt6rxHFU\n9LH", 588398736, "Cl;Ytk:[d13VZ8jYY`.$1$x8P", -1608373338, (void *)-233921788554454061, -1472867249);
+// 	ret1 = ft_printf("ft_printf: null pointer: %p\n", null_ptr);
+// 	ret2 = printf("printf   : null pointer: %p\n", null_ptr);
 // 	printf("Return values: ft_printf = %d, printf = %d\n\n", ret1, ret2);
 // }
